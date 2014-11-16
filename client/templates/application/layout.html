@@ -1,0 +1,18 @@
+<template name="layout">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class=title>
+                    <h1>
+                        <a href="{{>pathFor 'home'}}">Calendr.us</a>
+                    </h1>
+                </div>
+                {{> navLinks}}
+
+            </div>
+            <div class="span10">
+                {{> yield}}
+            </div>
+        </div>
+    </div>
+</template>

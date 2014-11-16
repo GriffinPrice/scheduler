@@ -1,15 +1,15 @@
 var postsData = [
   {
-    destination: 'Introducing Telescope',
-    url: 'http://sachagreif.com/introducing-telescope/'
+    destination: 'Calendar',
+    url: '/calendar'
   }, 
   {
-    destination: 'Meteor',
-    url: 'http://meteor.com'
+    destination: 'Account',
+    url: '/account'
   }, 
   {
-    destination: 'The Meteor Book',
-    url: 'http://themeteorbook.com'
+    destination: 'Sign out',
+    url: '/signout'
   }
 ];
 Template.navLinks.helpers({

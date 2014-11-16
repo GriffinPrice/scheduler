@@ -4,8 +4,12 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 mizzao:bootstrap-3
 underscore
+bootstrap
+less
+rzymek:fullcalendar
+accounts-google
+iron:router
 
