@@ -1,7 +1,7 @@
 .grid-block,
 .main,
 .post, .title,
-.comments li,
+.comments li, .calendar,
 .comment-form {
     background: #fff;
     -webkit-border-radius: 3px;
@@ -33,6 +33,9 @@ body {
 }
 #spinner {
     height: 300px;
+}
+.title, .calendar{
+    margin-top: 10px;
 }
 .post {
     /* For modern browsers */
