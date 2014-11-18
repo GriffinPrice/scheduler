@@ -1,0 +1,7 @@
+<template name="defaultView">
+    {{#if currentUser}}
+        {{>calendar}}
+    {{else}}
+        {{> nouser}}
+    {{/if}}
+</template>

@@ -3,5 +3,8 @@ Accounts.ui.config({
         google: [
             'openID email https://www.googleapis.com/auth/calendar'
         ]
-    }
+    }/*,
+    requestOfflineToken: {
+        google: true
+    }*/
 });
