@@ -5,17 +5,29 @@ ServiceConfiguration.configurations.insert({
   secret: "6MQ8L93gbu9xMUhPydHC7OlR"
 });
 
-function getCalendar(user){
-    var gToken= String(user.profile.googleToken);
+function getCalendarList(user){
+    var gToken= user.profile.googleToken;
+
 }
 
+/* valudateNewUser hook calls function every time it runs, and creates starting user profile info.
+ * Objectives:
+ * Retrieve useful google information.
+ * Future: Prompt the user to do first-time set-up.
+ */
+
 Accounts.validateNewUser(function (user) {
-    var gToken = user.services.google.accessToken;
-    user.profile.googleToken = gToken;
+    getCalendarList(user);
+
+
+    //HTTP.get(
+    /*
+    HTTP.call(method, url, [options], [asyncCallback])
+    var requestURL =
 
     return true;
 
-    /*if (invitedUser) {
+    if (invitedUser) {
         var timestamp = (new Date()).getTime();
         InvitedUsers.update({_id: invitedUser._id},{$set:{joined: timestamp}});
         user.profile.role = invitedUser.role;
@@ -23,4 +35,5 @@ Accounts.validateNewUser(function (user) {
         return true;
     }
     throw new Meteor.Error(403, "Contact your Administrator to be given access.");*/
+    return true;
 });
