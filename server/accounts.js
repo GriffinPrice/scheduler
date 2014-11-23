@@ -7,13 +7,13 @@ ServiceConfiguration.configurations.insert({
 
 Meteor.startup(function(){
     HTTPJWT.setJWTOptions({ // Just call this once to set JWT
-      email: '<google_service_account_email_local_part>@developer.gserviceaccount.com',
-      key: Assets.getText('key.pem'), // Get key file from assets
+      email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
+      key: Assets.getText('googlekey.pem'), // Get key file from assets
       scopes: [
-        'https://www.googleapis.com/auth/calendar // New scope name
+        'https://www.googleapis.com/auth/calendar' // New scope name
       ]
     });
-}
+});
 
 function getCalendarList(user){
     var userID = user.profile.services.google.id;
