@@ -25,9 +25,10 @@ function getCalendarList(user){
       email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
       key: Assets.getText('googlekey.pem'),
       scopes: [
-        'https://www.googleapis.com/auth/calendar',
-        'https://www.googleapis.com/auth/calendar.readonly'
-      ]
+        'https://www.googleapis.com/auth/calendar'//,
+        //'https://www.googleapis.com/auth/calendar.readonly'
+      ],
+      delegationEmail: user.services.google.email
     });
     console.log(accessToken);
 
@@ -53,7 +54,7 @@ function getCalendarList(user){
     //var result = HTTP.get(APIurlreq+'&syncToken='+result.content.nextSyncToken); //Throws a 503 Error. GOOGLE DOESN'T LIKE THIS!
     //console.log(result.content);
     var calArray = new Array();
-    _.each(result.item,function(calendar){
+    _.each(result.items,function(calendar){
         calArray.push(calendar.id);
     });
     user.profile.calendars = calArray;
