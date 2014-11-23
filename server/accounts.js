@@ -13,13 +13,28 @@ Meteor.startup(function(){
         'https://www.googleapis.com/auth/calendar' // New scope name
       ]
     });
+    console.log('JWT settings applied');
 });
 
 function getCalendarList(user){
-    var userID = user.profile.services.google.id;
+    var userID = user.services.google.id;
     // Need to authenticate with Google first by sending an OAuth2 authentication request.
+    var accessToken = GoogleOAuthJWT.authenticate({
+      email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
+      key: Assets.getText('googlekey.pem'),
+      scopes: [
+        'https://www.googleapis.com/auth/calendar'
+      ]
+    });
+    console.log(accessToken);
+
     var APIurl = 'https://www.googleapis.com/calendar/v3/users/' + userID + '/calendarList';
-    var result = HTTPJWT.get(APIurl);
+    console.log(APIurl);
+    var result = HTTP.get(APIurl,{
+        headers: JSON.stringify('Authorization: Bearer '+accessToken)
+    });
+
+    console.log(result.content);
     var calArray = new Array();
     _.each(result.item,function(calendar){
         calArray.push(calendar.id);
