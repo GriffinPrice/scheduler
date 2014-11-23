@@ -10,7 +10,7 @@ Meteor.startup(function(){
       email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
       key: Assets.getText('googlekey.pem'), // Get key file from assets
       scopes: [
-        'https://www.googleapis.com/auth/calendar' // New scope name
+        'openID email https://www.googleapis.com/auth/calendar' // New scope name
       ]
     });
     console.log('JWT settings applied');
@@ -18,29 +18,46 @@ Meteor.startup(function(){
 
 function getCalendarList(user){
     var userID = user.services.google.id;
+    var APIurl = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
     // Need to authenticate with Google first by sending an OAuth2 authentication request.
+
     var accessToken = GoogleOAuthJWT.authenticate({
       email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
       key: Assets.getText('googlekey.pem'),
       scopes: [
-        'https://www.googleapis.com/auth/calendar'
+        'https://www.googleapis.com/auth/calendar',
+        'https://www.googleapis.com/auth/calendar.readonly'
       ]
     });
     console.log(accessToken);
 
-    var APIurl = 'https://www.googleapis.com/calendar/v3/users/' + userID + '/calendarList';
-    console.log(APIurl);
-    var result = HTTP.get(APIurl,{
-        headers: JSON.stringify('Authorization: Bearer '+accessToken)
-    });
+    //var accessToken = user.services.google.accessToken;
 
-    console.log(result.content);
+    console.log(APIurl);
+    //var header = JSON.stringify('Authorization: Bearer '+accessToken);
+    //console.log(header);
+    var APIurlreq = APIurl + '?access_token=' + accessToken;
+    console.log(APIurlreq);
+    var result = HTTP.get(APIurlreq);
+
+    /*result = HTTP.get(APIurl,{
+        data:{
+            headers: header
+        }
+    });
+    */
+    //var result = HTTPJWT.get(APIurl);
+
+
+    console.log(result.content); //For some reason, 'items' is empty in this request.
+    //var result = HTTP.get(APIurlreq+'&syncToken='+result.content.nextSyncToken); //Throws a 503 Error. GOOGLE DOESN'T LIKE THIS!
+    //console.log(result.content);
     var calArray = new Array();
     _.each(result.item,function(calendar){
         calArray.push(calendar.id);
     });
     user.profile.calendars = calArray;
-
+    console.log(calArray);
 
 }
 
