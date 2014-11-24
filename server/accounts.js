@@ -32,8 +32,7 @@ function getCalendarList(user){
       email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
       key: Assets.getText('googlekey.pem'),
       scopes: [
-        'https://www.googleapis.com/auth/calendar'//,
-        //'https://www.googleapis.com/auth/calendar.readonly'
+        'https://www.googleapis.com/auth/calendar'
       ],
       delegationEmail: user.services.google.email
     });
@@ -67,14 +66,4 @@ function getCalendarList(user){
 Accounts.validateNewUser(function (user) {
     getCalendarList(user);
     return true;
-});
-
-
-Meteor.publish("userData", function() {
-  if (this.userId) {
-    return Meteor.users.find({_id: this.userId},
-      {fields: {'profile.isActive': 1}});
-  } else {
-    this.ready();
-  }
 });

@@ -18,4 +18,6 @@ http
 jparker:crypto-sha256
 jparker:crypto-hmac
 jagi:google-oauth-jwt
+sacha:spin
+meteorhacks:fast-render
 
