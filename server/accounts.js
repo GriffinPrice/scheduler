@@ -37,50 +37,24 @@ function getCalendarList(user){
       ],
       delegationEmail: user.services.google.email
     });
-    console.log(accessToken);
-
-    //var accessToken = user.services.google.accessToken;
-
-    //console.log(APIurl);
-    //var header = JSON.stringify('Authorization: Bearer '+accessToken);
-    //console.log(header);
+    //console.log(accessToken);
     var APIurlreq = APIurl + '?access_token=' + accessToken;
-    console.log(APIurlreq);
+    //console.log(APIurlreq);
     var result = HTTP.get(APIurlreq);
-
-    /*result = HTTP.get(APIurl,{
-        data:{
-            headers: header
-        }
-    });
-    */
-    //var result = HTTPJWT.get(APIurl);
-
-    console.log('this is the result: \n'+result.content);
+    //console.log('this is the result: \n'+result.content);
     var json = result.content;
     var data = JSON.parse(json);
-    console.log('this is the data: \n' + data);
+    //console.log('this is the data: \n' + data);
     var calArray = [];
-    /*_.each(result.items,function(calendar){  //Not working, probably because I don't know underscore very well.
-        calArray.push(calendar.id);
-    });*/
-    console.log('this is data.items: \n'+ data.items);
-    console.log('this is data.items.content: \n'+ JSON.stringify(data.items, null, 4));
+    //console.log('this is data.items: \n'+ data.items);
+    //console.log('this is data.items.content: \n'+ JSON.stringify(data.items, null, 4));
     data['items'].forEach(function(element, index, array){
-        var JSONstring = JSON.stringify(element, null, 4);
-
-        //var Jdata = JSON.parse(JSONstring);
-        console.log('here is an element summary at index '+index+': \n'+ element['summary']);
-        console.log('here is an element id at index '+index+': \n'+ element['id']);
+        //console.log('here is an element summary at index '+index+': \n'+ element['summary']);
+        //console.log('here is an element id at index '+index+': \n'+ element['id']);
         calArray.push( {Summary: element['summary'], ID: element['id'] });
     });
-
-    /*for(i = 0; i < data.items.length; i++ ){
-        console.log('this is items[i] content for i = ' +String(i)+': \n'+data.items[i].content);
-        //calArray[data.items[i].summary] = data.items[i].id;
-    }*/
     user.profile.calendars = calArray;
-    console.log('this is calArray: \n' +JSON.stringify(calArray, null, 4));
+    console.log('this is calArray for user '+ user.profile.name + ': \n' +JSON.stringify(calArray, null, 4));
 
 }
 
@@ -92,21 +66,15 @@ function getCalendarList(user){
 
 Accounts.validateNewUser(function (user) {
     getCalendarList(user);
-
-    //HTTP.get(
-    /*
-    HTTP.call(method, url, [options], [asyncCallback])
-    var requestURL =
-
     return true;
+});
 
-    if (invitedUser) {
-        var timestamp = (new Date()).getTime();
-        InvitedUsers.update({_id: invitedUser._id},{$set:{joined: timestamp}});
-        user.profile.role = invitedUser.role;
-        user.profile.status = 'Active';
-        return true;
-    }
-    throw new Meteor.Error(403, "Contact your Administrator to be given access.");*/
-    return true;
+
+Meteor.publish("userData", function() {
+  if (this.userId) {
+    return Meteor.users.find({_id: this.userId},
+      {fields: {'profile.isActive': 1}});
+  } else {
+    this.ready();
+  }
 });
