@@ -1,5 +1,9 @@
 Template.account.helpers({
     calendars: function(){
-        return Meteor.user().profile.calendars;
+        if(Meteor.user()){
+            return Meteor.user().profile.calendars;
+        }else{
+            return null;
+        }
     }
 });
