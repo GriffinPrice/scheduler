@@ -16,6 +16,13 @@ Meteor.startup(function(){
     console.log('JWT settings applied');
 });
 
+/* Function: getCalendarList(user)
+ * ----------------------------------------------------------------------------------------
+ * function takes user information and generates access token from google. Makes request for
+ * list of calendars using 'GET' with access token in URL.
+ * TODO: Migrate accessToken to header of GET request, practice safe net citizenship.
+ */
+
 function getCalendarList(user){
     var userID = user.services.google.id;
     var APIurl = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
@@ -34,7 +41,7 @@ function getCalendarList(user){
 
     //var accessToken = user.services.google.accessToken;
 
-    console.log(APIurl);
+    //console.log(APIurl);
     //var header = JSON.stringify('Authorization: Bearer '+accessToken);
     //console.log(header);
     var APIurlreq = APIurl + '?access_token=' + accessToken;
@@ -49,16 +56,31 @@ function getCalendarList(user){
     */
     //var result = HTTPJWT.get(APIurl);
 
-
-    console.log(result.content); //For some reason, 'items' is empty in this request.
-    //var result = HTTP.get(APIurlreq+'&syncToken='+result.content.nextSyncToken); //Throws a 503 Error. GOOGLE DOESN'T LIKE THIS!
-    //console.log(result.content);
-    var calArray = new Array();
-    _.each(result.items,function(calendar){
+    console.log('this is the result: \n'+result.content);
+    var json = result.content;
+    var data = JSON.parse(json);
+    console.log('this is the data: \n' + data);
+    var calArray = [];
+    /*_.each(result.items,function(calendar){  //Not working, probably because I don't know underscore very well.
         calArray.push(calendar.id);
+    });*/
+    console.log('this is data.items: \n'+ data.items);
+    console.log('this is data.items.content: \n'+ JSON.stringify(data.items, null, 4));
+    data['items'].forEach(function(element, index, array){
+        var JSONstring = JSON.stringify(element, null, 4);
+
+        //var Jdata = JSON.parse(JSONstring);
+        console.log('here is an element summary at index '+index+': \n'+ element['summary']);
+        console.log('here is an element id at index '+index+': \n'+ element['id']);
+        calArray.push( {Summary: element['summary'], ID: element['id'] });
     });
+
+    /*for(i = 0; i < data.items.length; i++ ){
+        console.log('this is items[i] content for i = ' +String(i)+': \n'+data.items[i].content);
+        //calArray[data.items[i].summary] = data.items[i].id;
+    }*/
     user.profile.calendars = calArray;
-    console.log(calArray);
+    console.log('this is calArray: \n' +JSON.stringify(calArray, null, 4));
 
 }
 
