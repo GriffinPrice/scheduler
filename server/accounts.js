@@ -10,10 +10,10 @@ Meteor.startup(function(){
       email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
       key: Assets.getText('googlekey.pem'), // Get key file from assets
       scopes: [
-        'openID email https://www.googleapis.com/auth/calendar' // New scope name
+        'openID email https://www.googleapis.com/auth/calendar' // Scope names. Unclear if this needs to be the same as the scopes in config.js
       ]
     });
-    console.log('JWT settings applied');
+    console.log('JWT settings applied');                   //Started as debugging, now informs me when the server has been restarted.
 });
 
 /* Function: getCalendarList(user)
@@ -27,29 +27,21 @@ function getCalendarList(user){
     var userID = user.services.google.id;
     var APIurl = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
     // Need to authenticate with Google first by sending an OAuth2 authentication request.
-
     var accessToken = GoogleOAuthJWT.authenticate({
       email: '732547433082-lbs4a1ktib49b34muh9bg2bjm93791lo@developer.gserviceaccount.com',
       key: Assets.getText('googlekey.pem'),
       scopes: [
         'https://www.googleapis.com/auth/calendar'
       ],
-      delegationEmail: user.services.google.email
+      delegationEmail: user.services.google.email //Gogole uses 'sub' in lieu of 'delegationEmail'
     });
-    //console.log(accessToken);
     var APIurlreq = APIurl + '?access_token=' + accessToken;
-    //console.log(APIurlreq);
     var result = HTTP.get(APIurlreq);
-    //console.log('this is the result: \n'+result.content);
     var json = result.content;
     var data = JSON.parse(json);
-    //console.log('this is the data: \n' + data);
     var calArray = [];
-    //console.log('this is data.items: \n'+ data.items);
-    //console.log('this is data.items.content: \n'+ JSON.stringify(data.items, null, 4));
+
     data['items'].forEach(function(element, index, array){
-        //console.log('here is an element summary at index '+index+': \n'+ element['summary']);
-        //console.log('here is an element id at index '+index+': \n'+ element['id']);
         calArray.push( {Summary: element['summary'], ID: element['id'] });
     });
     user.profile.calendars = calArray;
@@ -59,9 +51,13 @@ function getCalendarList(user){
 }
 
 /* valudateNewUser hook calls function every time it runs, and creates starting user profile info.
- * Objectives:
+ * Objectives: Creates starting point for user account by acting as a wrapper for other functions that populate
+ * user information.
  * Retrieve useful google information.
- * Future: Prompt the user to do first-time set-up.
+ * Make assumptions about user preferences
+ * TODO: Prompt the user to do first-time set-up.
+ * Pre-req: Have 'accounts' fleshed out.
+ *          Pretty much learn CSS + HTML
  */
 
 Accounts.validateNewUser(function (user) {
