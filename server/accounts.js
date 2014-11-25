@@ -53,6 +53,7 @@ function getCalendarList(user){
         calArray.push( {Summary: element['summary'], ID: element['id'] });
     });
     user.profile.calendars = calArray;
+    user.profile.preferredCalendar = user.services.google.email;
     console.log('this is calArray for user '+ user.profile.name + ': \n' +JSON.stringify(calArray, null, 4));
 
 }

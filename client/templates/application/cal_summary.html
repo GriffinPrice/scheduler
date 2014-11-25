@@ -1,5 +1,9 @@
 <template name="calSummary">
     <div class = "post-content">
+        {{#if preferred}}
+        <h2>{{Summary}}:   <span>{{ID}}</span></h2>
+        {{else}}
         <h3>{{Summary}}:   <span>{{ID}}</span></h3>
+        {{/if}}
     </div>
 </template>
