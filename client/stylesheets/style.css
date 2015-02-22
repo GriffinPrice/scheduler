@@ -11,12 +11,12 @@
     border-radius: 3px;
     padding: 10px;
     margin-bottom: 10px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
+
+
 body {
-    background: #eee;
+    background: #efe;
     color: #666666;
 }
 .navbar {
@@ -34,8 +34,15 @@ body {
 #spinner {
     height: 300px;
 }
-.title, .calendar{
-    margin-top: 10px;
+.title {
+    color: white;
+    background-color: #0a0;
+    text-decoration: none;
+    border-radius: 0px;
+}
+
+.container-fluid {
+    padding: 0px;
 }
 .post {
     /* For modern browsers */
@@ -200,4 +207,29 @@ body {
     clear: both;
     margin-bottom: 5px;
     pointer-events: auto;
+}
+
+.accounts-page {
+    background-color: inherit;
+}
+
+.cal-list {
+
+    border: .2em solid black;
+    color: black;
+}
+
+.cal-summary {
+
+}
+
+
+
+.preferred-cal {
+    color: #FFFFFF;
+    background-color:#0a0;
+    font-family: sans-serif;
+
+    /*border: .2em solid black;
+    margin: 0px;*/
 }
