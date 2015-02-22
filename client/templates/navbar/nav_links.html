@@ -1,8 +1,8 @@
 <template name="navLinks">
-    <div class = "navDests">
+    <li class = "navDests">
         {{#each navs}}
             {{> navLink}}
         {{/each}}
-        {{> login}}
-    </div>
+        <a>{{> loginButtons}}</a>
+    </li>
 </template>

@@ -7,11 +7,9 @@ meteor-platform
 mizzao:bootstrap-3
 underscore
 bootstrap
-less
 rzymek:fullcalendar
 accounts-google
 iron:router
-accounts-ui-unstyled
 force-ssl
 service-configuration
 http
@@ -21,4 +19,6 @@ jagi:google-oauth-jwt
 sacha:spin
 meteorhacks:fast-render
 html5cat:bootstrap-material-design
+less
+accounts-ui-unstyled
 

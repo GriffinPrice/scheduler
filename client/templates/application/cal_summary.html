@@ -1,9 +1,9 @@
 <template name="calSummary">
-    <div class = "cal-summary">
+    <ul class = "cal-summary">
         {{#if preferred}}
-        <div class='preferred-cal'><h3>{{Summary}}:   <span>{{ID}}</span></h3></div>
+        <li class='preferred-cal'>{{Summary}}:   <span>{{ID}}</span></li>
         {{else}}
-        <h3>{{Summary}}:   <span>{{ID}}</span></h3>
+        <li>{{Summary}}:   <span>{{ID}}</span></li>
         {{/if}}
-    </div>
+    </ul>
 </template>
