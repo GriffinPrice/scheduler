@@ -1,4 +1,4 @@
-.grid-block,
+/*.grid-block,
 .main,
 .post, .title,
 .comments li, .calendar,
@@ -13,12 +13,45 @@
     margin-bottom: 10px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
-
+*/
 
 body {
-    background: #efe;
+    background: #cec;
     color: #666666;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+div .row-fluid {
+    /*border-bottom: .1em solid black;*/
+}
+
+
+.wrapper {
+
+}
+
+.navDests {
+    height: 100%;
+}
+
+.powerbar{
+    color: white;
+    background-color: #4CAF50;
+    text-decoration: none;
+    border-radius: 0px;
+    box-shadow:
+        0em .4em .6em -.2em rgba(0,0,0,.2)
+}
+
 .navbar {
     margin-bottom: 10px;
 }
@@ -34,12 +67,7 @@ body {
 #spinner {
     height: 300px;
 }
-.title {
-    color: white;
-    background-color: #0a0;
-    text-decoration: none;
-    border-radius: 0px;
-}
+
 
 .container-fluid {
     padding: 0px;

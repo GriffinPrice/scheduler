@@ -1,6 +1,7 @@
 <template name="layout">
     <div class="container-fluid">
-        <div class='row-fluid'>
+        <div class='powerbar'>
+            <div class='row-fluid'>
                 <div class="span2">
                     <div class="title">
                         <h1>
@@ -10,15 +11,20 @@
                 </div>
                 <div class="span10">
                 </div>
-        </div>
-        <div class="row-fluid">
-            <div class="span2">
-
-                {{> navLinks}}
-
             </div>
-            <div class="span10">
-                {{> yield}}
+        </div>
+        <div class="row-fluid" height=100%>
+            <div class='wrapper'>
+                <div class="span2" id="sidebar">
+                    <div class="powerbar">
+                       {{> navLinks}}
+
+                    </div>
+
+                </div>
+                <div class="span10">
+                    {{> yield}}
+                </div>
             </div>
         </div>
     </div>
