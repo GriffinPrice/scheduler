@@ -73,12 +73,13 @@ td {
     background-color: #4CAF50;
     box-shadow:
         0em .4em .6em -.2em rgba(0,0,0,.2);
+    height: 4em;
 }
 
 .navbar-brand {
     font-family: proxima-nova-sbold;
     font-size: 3em;
-    padding: .2em;
+    padding: .25em;
 }
 /*
  * Sidebar
