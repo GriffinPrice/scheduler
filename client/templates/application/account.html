@@ -1,10 +1,12 @@
 <template name="account">
     <div class="accounts-page">
-        <div class='title'><h1>Calendars in your account:</h1></div>
-        <div class='cal-list'>
-            {{#each calendars}}
-                {{> calSummary}}
-            {{/each}}
+        <div class='col-sm-3'>
+            <div class='title'><h1>Calendars in your account:</h1></div>
+            <div class='cal-list'>
+                {{#each calendars}}
+                    {{> calSummary}}
+                {{/each}}
+            </div>
         </div>
     </div>
 </template>

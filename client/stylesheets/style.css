@@ -53,12 +53,16 @@ td {
     margin-left: .2em;
     text-align: center;
 }
-.weekday {
+.cal-weekday, .weekday {
     background-color: #aaa;
     color: black;
 }
 
-.weekend {
+.cal-weekend, .cal-weekday{
+    width: 14.27%;
+}
+
+.cal-weekend, .weekend {
     background-color: #eee;
     color: black;
 }
@@ -66,6 +70,17 @@ td {
 .table-logo{
    /* border-spacing: .2em;
     border-collapse: separate;*/
+}
+
+.cal-table{
+    width: 100%;
+    border-radius: 5px;
+    box-shadow:
+            .6em 0em -.2em 0em rgba(0,0,0,.2);
+}
+
+.cal-table .cal-row{
+    height: 8em;
 }
 
 .navbar-fixed-top {

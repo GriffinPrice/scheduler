@@ -57,7 +57,7 @@ function getCalendarList(user){
  * Make assumptions about user preferences
  * TODO: Prompt the user to do first-time set-up.
  * Pre-req: Have 'accounts' fleshed out.
- *          Pretty much learn CSS + HTML
+ *          Pretty much learn CSS + HTML -> done! 2-22-15
  */
 
 Accounts.validateNewUser(function (user) {
